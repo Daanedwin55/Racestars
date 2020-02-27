@@ -8,7 +8,11 @@ Driver = {
     "Name" : "",
     "Team" : 0,
     "Points" : 0,
-    "Reserve": False
+    "Reserve": False,
+    "Fastest Lap": 0,
+    "Podia": 0,
+    "Wins": 0,
+    "Points finish": 0
 }
 
 #   Function to set the Drivers name
