@@ -1,59 +1,71 @@
 from tkinter import *
 import tkinter as tk
-driversss = ["Driver", "Team","Points", "Reserve", "Fastest Laps", "Podia", "Wins", "Points Finish"]
+driversss = ["Driver", "Team","Car","Points", "Reserve", "Fastest Laps", "Podia", "Wins", "Points Finish"]
+LARGE_FONT= ("Verdana", 12)
 
-class Racestars(Frame):
-    def __init__(self, master=None):
-        Frame.__init__(self,master)
-        self.drivers = LabelFrame(root, text = "Drivers")
-        self.constructor = LabelFrame(root, text = "Constructor")
-        self.drivers.grid(row = 0, column = 0, sticky = N)
-        self.constructor.grid(row = 0, column = 2, sticky = N)
-    
-        # Making of buttons
+class Racestars(tk.Tk):
 
-        quiting = tk.Button(root, text="Exit", command = self.Exit)
-        quiting.grid(row = 99, column = 1)
+    def __init__(self, *args, **kwargs):
 
-    def Exit(self): 
-        root.destroy()
+        tk.Tk.__init__(self, *args, **kwargs)
+        container = tk.Frame(self)
 
-    def gridMaking(self, height, width, offset, option):
-        h = 0
-        height = int(height)
-        width = int(width)
-        offset = int(offset)
-        for i in range(height):
-            for j in range(width):
-                if option == "drivers":
-                    if i == 0:
-                        global driversss
-                        w = tk.Label(self.drivers, text=driversss[h])
-                    else:
-                        
-                        w = tk.Label(self.drivers, text="test")
-                    w.grid(row=i, column=j+offset)
-                    h += 1
-                elif option == "constructor":
-                    w = tk.Label(self.constructor, text="Test")
-                    w.grid(row=i, column=j+offset)
-                else:
-                    print("Not a labelframe.")
+        container.pack(side="top", fill="both", expand = True)
 
+        container.grid_rowconfigure(0, weight=1)
+        container.grid_columnconfigure(0, weight=1)
+
+        self.frames = {}
+
+        for F in (homePage, driversPage):
+
+            frame = F(container, self)
+
+            self.frames[F] = frame
+            
+            frame.grid(row=0, column=0, sticky="nsew")
+
+        self.show_frame(homePage)
+
+    def show_frame(self, cont):
+        frame = self.frames[cont] 
+        frame.tkraise()
+
+class homePage(tk.Frame):
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self,parent)
+        label = tk.Label(self, text="Start Page", font=LARGE_FONT)
+        label.pack(pady=10,padx=10)
+
+        button = tk.Button(self, text="Visit Page 1",
+                            command=lambda: controller.show_frame(driversPage))
+        button.pack()
+
+class driversPage(tk.Frame):
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
+        label = tk.Label(self, text="Page One!!!", font=LARGE_FONT)
+        label.pack(pady=10,padx=10)
+
+        button1 = tk.Button(self, text="Back to Home",
+                            command=lambda: controller.show_frame(homePage))
+        button1.pack()
 
 # Setting up main frame
-root = Tk()
-Race = Racestars(master=root)
-Race.master.title("Racestars")
-Race.master.minsize(800, 400)
+#root = Tk()
+#Race = Racestars(master=root)
+#Race.master.title("Racestars")
+#Race.master.minsize(1200, 600)
 
 # Setting up the grid for drivers
 
-Race.gridMaking(31,8,0, "drivers")
+#Race.gridMaking(31,9,0, "drivers")
 
-Race.gridMaking(11,4,10, "constructor")
+#Race.gridMaking(11,4,10, "constructor")
 
 # Starting the interface
 
-Race.mainloop()
-root.destroy()
+#Race.mainloop()
+
+app = Racestars()
+app.mainloop()

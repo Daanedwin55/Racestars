@@ -3,7 +3,7 @@
 import json
 
 # Making a global variable to make drivers with one function
-
+DriversList = []
 Driver = {
     "Name" : "",
     "Team" : 0,
@@ -46,12 +46,11 @@ def driverSetup(name, team, points, reserve):
     global Driver
     return Driver
 
-def main(function):
-    which = function
     
     
 
-#x = driverSetup("Daanedwin", 7, 5, False)
+x = driverSetup("Daanedwin", 7, 5, False)
+DriversList.append(x)
 
 
 #with open('Data.json', 'a') as outfile:
