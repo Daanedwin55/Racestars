@@ -1,49 +1,48 @@
 # Here are the constructors made
 Constructor = {
-    "Team0": {
+    0 : {
         "Id" : 0,
-        "Name" : "reserve"
+        "Name" : "Reserve"
     },
-    "Team1": {
+    1: {
         "Id" : 1,
         "Name" : "Mercedes"
     },
-    "Team2": {
+    2: {
         "Id" : 2,
         "Name" : "Ferrari"
     },
-    "Team3": {
+    3: {
         "Id" : 3,
         "Name" : "Red Bull"
     },
-    "Team4": {
+    4: {
         "Id" : 4,
         "Name" : "Mclaren"
     },
-    "Team5": {
+    5: {
         "Id" : 5,
         "Name" : "Renault"
     },
-    "Team6": {
+    6: {
         "Id" : 6,
         "Name" : "Racing point"
     },
-    "Team7": {
+    7: {
         "Id" : 7,
         "Name" : "Alfa Romeo"
     },
-    "Team8": {
+    8: {
         "Id" : 8,
         "Name" : "Torro Rosso"
     },
-    "Team9": {
+    9: {
         "Id" : 9,
         "Name" : "Haas"
     },
-    "Team10": {
+    10: {
         "Id" : 10,
         "Name" : "Williams"
     }
 
 }
-print(Constructor)

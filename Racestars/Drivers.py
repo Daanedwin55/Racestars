@@ -47,7 +47,8 @@ def driverSetup(name, team, points, reserve):
     return Driver
 
     
-    
+def main(test):
+    print(test)
 
 x = driverSetup("Daanedwin", 7, 5, False)
 DriversList.append(x)
