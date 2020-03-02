@@ -6,8 +6,9 @@ import Drivers
 driversss = ["Driver", "Team","Points", "Reserve", "Fastest Laps", "Podia", "Wins", "Points Finish"]
 constructorsss = ["Team", "Drivers", "Reserve Driver", "Points", "Wins"]
 LARGE_FONT= ("Verdana", 12)
-
+entries = {}
 fields = ["Name Driver", "Points", "Fastest Laps", "Podia", "Wins", "Points Finish"]
+
 
 choices = []
 for i in range(len(Constructor.Constructor)):
@@ -116,17 +117,26 @@ class driversPage(tk.Frame):
         global driversss
         self.gridMaking(10,len(driversss), 0, "drivers")
 
-        entries  = self.formMaking()
-        #global fields
+        global fields
         #self.makeform(fields)
-        
+        self.makeform(fields)
+
         button1 = tk.Button(self, text="Back to Home",
                             command=lambda: controller.show_frame(homePage))
         button1.grid(row = 99, column = 1)
+        submit = Button(self, text = "Submit driver", command=lambda: print(self.getFormEntry()))
+        submit.grid(row=99, column =3)
 
-        submit = Button(self.editor, text = "Submit", command =lambda:  Drivers.main(entries))
+    def nothing(self):
+        pass
+        
+    def getFormEntry(self):
+        entry2 = {}
+        global fields
+        
 
-        submit.grid(row=9, column = 1)
+
+        return entry2
 
     def gridMaking(self, height, width, offset, option):
         h = 0
@@ -161,66 +171,9 @@ class driversPage(tk.Frame):
                 else:
                     print("Not a labelframe.")
 
-    
-    def formMaking(self):
-
-        teamvar = StringVar(self)
-
-        driver_name = Label(self.editor, text = "Drivers name :").grid(row=1, column=0)
-        driver_entry = Entry(self.editor)
-        driver_entry.grid(row=1, column=2)
-
-        points = Label(self.editor, text = "Current Points:").grid(row=2, column=0)
-        points_entry = Entry(self.editor)
-        points_entry.grid(row=2, column=2)
-
-        fastest_lap = Label(self.editor, text = "Fastest laps:").grid(row=3, column=0)
-        fl_entry = Entry(self.editor)
-        fl_entry.grid(row=3, column=2)
-
-        podia = Label(self.editor, text = "Podia :").grid(row=4, column=0)
-        podia_entry = Entry(self.editor)
-        podia_entry.grid(row=4, column=2)
-
-        wins = Label(self.editor, text = "Wins:").grid(row=5, column=0)
-        wins_entry = Entry(self.editor)
-        wins_entry.grid(row=5, column=2)
-
-        points_finish = Label(self.editor, text = "Point finishes:").grid(row=6, column=0)
-        pofi_entry = Entry(self.editor)
-        pofi_entry.grid(row=6, column=2)
-
-        team_name = Label(self.editor, text = "Team :").grid(row=7, column=0)
-        global choices
-        teamvar.set(choices[0])
-        team_entry = OptionMenu(self.editor, teamvar, *choices).grid(row=7, column=2)
-
-        reservel = Label(self.editor, text = "Reserve :").grid(row=8, column=0)
-        Reserve = IntVar(self)
-        isReserve = Checkbutton(self.editor, text = "", variable=Reserve)
-        isReserve.grid(row=8, column=2)
-
-        entries = {}
-        entries["Driver name"] = driver_entry.get()
-        entries["Points"] = points_entry.get()
-        entries["Fastest lap"] = fl_entry.get()
-        entries["Podia"] = podia_entry.get()
-        entries["Wins"] = wins_entry.get()
-        entries["Point finishes"] = pofi_entry.get()
-        entries["Team name"] = teamvar.get()
-        entries["Reserve"] = Reserve.get()
-
-        return entries
-        
-
-
-        
-        
-
-
 
     def makeform(self, fields):
-        entries = {}
+        entrie = {}
         for field in fields:
             row = Frame(self.editor)
             lab = Label(row, width=22, text=field+": ", anchor='w')
@@ -229,7 +182,7 @@ class driversPage(tk.Frame):
             row.pack(side = TOP, fill = X, padx = 5 , pady = 5)
             lab.pack(side = LEFT)
             ent.pack(side = RIGHT, expand = YES, fill = X)
-            entries[field] = ent
+            entrie[field] = ent.get()
 
         team_name = Label(self.editor, text = "Team :")
         team_name.pack(side = LEFT, padx = 5 ,pady = 5)
@@ -244,12 +197,10 @@ class driversPage(tk.Frame):
         isReserve = Checkbutton(self.editor, text = "Reserve", variable=Reserve)
         isReserve.pack(side = RIGHT)
 
-        entries["Team"] = teamvar
-        entries["Reserve"] = Reserve
+        entrie["Team"] = teamvar.get()
+        entrie["Reserve"] = Reserve.get()
         
-        add_Driver = tk.Button(self.editor, text = "Submit", command = Drivers.main(entries))
-        add_Driver.pack(side = RIGHT, padx = 5, pady = 5)
-        
+           
         
 
 app = Racestars()
