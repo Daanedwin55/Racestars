@@ -33,7 +33,7 @@ class DriverAPI(object):
                 k = 0
                 for d in self.data["Drivers"]:
                      k = k +1
-                return int(k)+1
+                return int(k)
  
         #Driver specific getters
         def getDriverTeam(self, driverName):
@@ -112,7 +112,7 @@ class DriverAPI(object):
                         data = json.load(json_file)
                        
                         temp_data = data["Drivers"]
-                        print(type(temp_data))
+                        #print(type(temp_data))
                         new_driver = {
                        
                                  "naam":naam,

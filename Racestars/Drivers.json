@@ -1,0 +1,24 @@
+{
+    "Drivers": [
+        {
+            "naam": "Daanedwin",
+            "team": 7,
+            "Points": 0,
+            "Reserve": 0,
+            "FastestLap": 0,
+            "Podia": 0,
+            "Wins": 0,
+            "PointsFinish": 0
+        },
+        {
+            "naam": "Mr. Nathan",
+            "team": 7,
+            "Points": 0,
+            "Reserve": 0,
+            "FastestLap": 0,
+            "Podia": 0,
+            "Wins": 0,
+            "PointsFinish": 0
+        }
+    ]
+}
