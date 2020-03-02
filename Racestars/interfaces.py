@@ -1,8 +1,8 @@
 import tkinter as tk
 from tkinter import *
 import os
-import Constructor
 
+import Constructor
 import DriverAPI as DAPI
 
 cwd = os.getcwd()
@@ -42,7 +42,7 @@ class Racestars(tk.Tk):
         frame.tkraise()
 
     def exit(self):
-        app.destroy()
+        self.destroy()
 
 
 class homePage(tk.Frame):
@@ -54,6 +54,7 @@ class homePage(tk.Frame):
         self.makeLabfrm()
         self.makeButtons()
         self.driverStanding()
+        self.constructorStanding()
         
     def makeLabfrm(self):
 
@@ -113,6 +114,29 @@ class homePage(tk.Frame):
 
                 h += 1
         
+
+    def constructorStanding(self):
+        constructorTitle = ["Team Name", "Driver #1", "Driver #2", "Reserve rijder", "Points", "Wins"]
+        choices = []
+        for con in Constructor.Constructor:
+            choices.append(Constructor.Constructor[con]["Name"])
+        choices.pop(0)
+        h = 0
+
+        for i in range(len(choices) + 1):
+
+            for j in range(len(constructorTitle)):
+                
+                if i == 0:
+                    tabel = tk.Label(self.constructor, text = constructorTitle[h])
+
+                else:
+                    tabel = tk.Label(self.constructor, text = "test")
+            
+                tabel.grid(row = i, column = j)
+
+                h += 1
+
 
     def exit(self):
         self.controller.exit()
@@ -297,9 +321,5 @@ class driversPage(tk.Frame):
     def exit(self):
         self.controller.exit()
         
-
-
-
-
 app = Racestars()
 app.mainloop()
